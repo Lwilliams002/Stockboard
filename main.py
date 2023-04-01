@@ -1,30 +1,33 @@
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
+from datetime import date, timedelta
 
 # Fetch stock price data
-data = yf.download("SPY AAPL", start="2017-01-01", end="2017-04-30")
+end_date = date.today().strftime("%Y-%m-%d")
+start_date = (date.today() - timedelta(days=5)).strftime("%Y-%m-%d")
 
-# Reset the index to flatten the multi-level columns
-data.columns = [' '.join(col).strip() for col in data.columns.values]
+data = yf.download("TSLA", start=start_date, end=end_date, interval='30m')
 
 # Calculate daily returns
-data['SPY Daily Return'] = data['Close SPY'].pct_change()
-data['AAPL Daily Return'] = data['Close AAPL'].pct_change()
+data['TSLA Daily Return'] = data['Close'].pct_change()
 
 # Drop any rows with missing data
 data = data.dropna()
 
 # Chart requirements
-close_data = data[['Close SPY', 'Close AAPL']]
+close_data = data[['Close']]
 # Plot the line chart
 close_data.plot()
 
 # Customize the chart appearance
-plt.title("SPY and AAPL Close Prices (2017-01-01 to 2017-04-30)")
+plt.figure(figsize=(12, 6))
+plt.plot(close_data.index, close_data['Close'], lw=2, color='blue', label="TSLA")
+plt.title("TSLA Close Prices")
 plt.xlabel("Date")
 plt.ylabel("Close Price")
-plt.legend(["SPY", "AAPL"])
+plt.grid()
+plt.legend()
 
 # Display the chart
 plt.show()
