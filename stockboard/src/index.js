@@ -4,6 +4,7 @@ import App from './App';
 
 const root = ReactDOM.render(<App />, document.getElementById('root'));
 
+// eslint-disable-next-line
 root.render(
   <React.StrictMode>
     <App />
