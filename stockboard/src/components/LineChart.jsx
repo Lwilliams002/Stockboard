@@ -5,8 +5,40 @@ import { useState, useEffect, useCallback } from 'react';
 
 const LineChart = () => {
     const [data, setData] = useState([]);
+    const formatTime = (timestamp) => {
+      const date = new Date(timestamp);
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+
+      return `${hours}:${minutes}`;
+    };
 
     const fetchData = useCallback(async () => {
+        const processData = (jsonData) => {
+            const result = [];
+
+            console.log('Raw JSON data:', jsonData);
+            for (const [date, values] of Object.entries(jsonData)) {
+              for (const [symbol, value] of Object.entries(values)) {
+                  console.log('Symbol:', symbol, 'Value:', value);
+
+                let series = result.find((item) => item.id === symbol);
+                if (!series) {
+                  series = {
+                    id: symbol,
+                    data: [],
+                  };
+                  result.push(series);
+                }
+                series.data.push({
+                  x: formatTime(date),
+                  y: value,
+                });
+              }
+            }
+
+            return result;
+          };
         try {
             // const symbol = 'TSLA'; // Replace with the desired symbol
             // const startDate = '2023-03-23'; // Replace with the desired start date
@@ -26,28 +58,6 @@ const LineChart = () => {
         }
     }, []);
 
-    const processData = (jsonData) => {
-        const result = [];
-
-        for (const [date, values] of Object.entries(jsonData)) {
-            for (const [symbol, value] of Object.entries(values)) {
-                let series = result.find((item) => item.id === symbol);
-                if (!series) {
-                    series = {
-                        id: symbol,
-                        data: [],
-                    };
-                    result.push(series);
-                }
-                series.data.push({
-                    x: date,
-                    y: value,
-                });
-            }
-        }
-
-        return result;
-    };
 
     useEffect(() => {
         fetchData();
@@ -56,7 +66,9 @@ const LineChart = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     return (
+
         <ResponsiveLine
+
             data={data}
             theme={{
                 axis:{
@@ -109,7 +121,7 @@ const LineChart = () => {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'transportation',
+                legend: 'Time',
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}
@@ -118,7 +130,7 @@ const LineChart = () => {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'count',
+                legend: 'Price',
                 legendOffset: -40,
                 legendPosition: 'middle'
             }}
