@@ -1,10 +1,11 @@
 import { ResponsiveLine } from '@nivo/line';
 import {tokens} from "../theme";
 import {useTheme} from "@mui/material";
-import { useState, useEffect, useCallback } from 'react';
+// import {  useEffect, useCallback } from 'react';
 
-const LineChart = () => {
-    const [data, setData] = useState([]);
+const LineChart = ({data}) => {
+    // const [data, setData] = useState([]);
+    console.log("Line chart data:", data);
     const formatTime = (timestamp) => {
       const date = new Date(timestamp);
       const hours = date.getHours().toString().padStart(2, '0');
@@ -12,56 +13,6 @@ const LineChart = () => {
 
       return `${hours}:${minutes}`;
     };
-
-    const fetchData = useCallback(async () => {
-        const processData = (jsonData) => {
-            const result = [];
-
-            console.log('Raw JSON data:', jsonData);
-            for (const [date, values] of Object.entries(jsonData)) {
-              for (const [symbol, value] of Object.entries(values)) {
-                  console.log('Symbol:', symbol, 'Value:', value);
-
-                let series = result.find((item) => item.id === symbol);
-                if (!series) {
-                  series = {
-                    id: symbol,
-                    data: [],
-                  };
-                  result.push(series);
-                }
-                series.data.push({
-                  x: formatTime(date),
-                  y: value,
-                });
-              }
-            }
-
-            return result;
-          };
-        try {
-            // const symbol = 'TSLA'; // Replace with the desired symbol
-            // const startDate = '2023-03-23'; // Replace with the desired start date
-            // const endDate = '2023-03-27'; // Replace with the desired end date
-
-            const response = await fetch(
-                `http://localhost:5000/stocks`,
-            );
-            const jsonData = await response.json();
-
-            // You might need to process jsonData to match the format expected by the LineChart component
-            const processedData = processData(jsonData);
-
-            setData(processedData);
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-    }, []);
-
-
-    useEffect(() => {
-        fetchData();
-    }, [fetchData]);
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);

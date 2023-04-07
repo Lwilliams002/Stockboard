@@ -1,38 +1,35 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
+import yfinance as yf
 import pandas as pd
+from datetime import date, timedelta
 
 app = Flask(__name__)
 CORS(app)
 
-# Load the stock data from the CSV file
-data = pd.read_csv('data.csv', index_col='Datetime', parse_dates=True)
-
-
 @app.route('/stocks', methods=['GET'])
 def get_stocks():
     # Get query parameters
-    symbol = request.args.get('symbol', None)
-    start_date = request.args.get('start_date', None)
-    end_date = request.args.get('end_date', None)
+    symbol = request.args.get('symbol', 'TSLA')
+    start_date = request.args.get('start_date', (date.today() - timedelta(days=5)).strftime("%Y-%m-%d"))
+    end_date = request.args.get('end_date', date.today().strftime("%Y-%m-%d"))
 
-    # Filter data based on query parameters
-    filtered_data = data.copy()
-    if symbol:
-        filtered_data = filtered_data.filter(like=symbol, axis=1)
-    if start_date:
-        filtered_data = filtered_data[filtered_data.index >= start_date]
-    if end_date:
-        filtered_data = filtered_data[filtered_data.index <= end_date]
+    # Fetch stock price data
+    data = yf.download(symbol, start=start_date, end=end_date, interval='30m', auto_adjust=True)
+
+    # Calculate daily returns
+    data[f'{symbol} Daily Return'] = data['Close'].pct_change()
+
+    # Drop any rows with missing data
+    data = data.dropna()
 
     # Convert DataFrame to dictionary
-    response_data = filtered_data.to_dict(orient='index')
+    response_data = data.to_dict(orient='index')
 
     # Convert Timestamp objects to strings
     response_data = {str(k): v for k, v in response_data.items()}
 
     return jsonify(response_data)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
