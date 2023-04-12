@@ -7,21 +7,25 @@ Stock Visualizer is a powerful data visualization dashboard for tracking stock m
 - Fetch stock price data from Yahoo Finance API using yfinance library
 - Custom RESTful API built with Flask for serving stock data
 - Interactive frontend dashboard developed with React
-- Data visualization using D3.js, Chart.js, or Recharts
-- Analyze historical stock prices, compare multiple stocks, and view technical indicators
-- Responsive and user-friendly design
+- Data visualization using Nivo (a high-level React graphing library)
+- Analyze historical stock prices with intraday data granularity
+- Responsive and user-friendly design with a search bar for stock symbols
 
 ## Installation
 
 1. Clone the repository:
 
-git clone: https://github.com/Lwilliams002/Stockboard
+```sh
+git clone https://github.com/Lwilliams002/Stockboard
 
-## Usage
+```sh
+pip install -r requirements.txt
 
-1. Start the Flask API server:
-python api.py
+```sh
+python app.py
 
-2. In a separate terminal, navigate to the frontend directory and start the React development server:
+```sh
+npm install
+
+```sh
 npm start
-3. Open a web browser and visit http://localhost:3000 to access the Stock Visualizer dashboard.
