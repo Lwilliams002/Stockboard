@@ -18,14 +18,10 @@ Stock Visualizer is a powerful data visualization dashboard for tracking stock m
 ```sh
 git clone https://github.com/Lwilliams002/Stockboard
 
-```sh
 pip install -r requirements.txt
 
-```sh
 python app.py
 
-```sh
 npm install
 
-```sh
 npm start
