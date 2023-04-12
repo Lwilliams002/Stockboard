@@ -1,11 +1,12 @@
 import { ResponsiveLine } from '@nivo/line';
 import {tokens} from "../theme";
 import {useTheme} from "@mui/material";
-// import {  useEffect, useCallback } from 'react';
+import {  useEffect, useState} from 'react';
+import { processData, formatTime } from '../dataProcessing';
 
-const LineChart = ({data}) => {
-    // const [data, setData] = useState([]);
-    console.log("Line chart data:", data);
+const LineChart = ({searchValue}) => {
+    const [stockData, setStockData] = useState([]);
+    console.log("Line chart data:", searchValue);
     const formatTime = (timestamp) => {
       const date = new Date(timestamp);
       const hours = date.getHours().toString().padStart(2, '0');
@@ -14,13 +15,29 @@ const LineChart = ({data}) => {
       return `${hours}:${minutes}`;
     };
 
+    useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/stocks?symbol=${searchValue}`);
+        const jsonData = await response.json();
+        console.log('Fetched JSON data:', jsonData);
+        const processedData = processData(jsonData);
+        setStockData(processedData);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [searchValue]);
+
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     return (
 
         <ResponsiveLine
 
-            data={data}
+            data={searchValue}
             theme={{
                 axis:{
                     domain:{

@@ -13,7 +13,7 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Topbar = () => {
+const Topbar = ({ searchValue, setSearchValue}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
@@ -32,8 +32,8 @@ const Topbar = () => {
         <InputBase
           sx={{ ml: 2, flex: 1 }}
           placeholder={"Search"}
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.target.value)}
         />
         <IconButton type={"button"} sx={{ p: 1 }} onClick={handleSearch}>
           <SearchIcon />
