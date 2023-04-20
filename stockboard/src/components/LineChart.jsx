@@ -16,6 +16,7 @@ const LineChart = ({data}) => {
     };
 
 
+
     useEffect(() => {
       const fetchData = async (searchValue) => {
         console.log('Updated Search value:', searchValue);
@@ -75,7 +76,7 @@ const LineChart = ({data}) => {
                     }
                 }
             }}
-            margin={{top: 50, right: 110, bottom: 50, left: 60}}
+            margin={{top: 50, right: 110, bottom: 95, left: 70}}
             xScale={{type: 'point'}}
             yScale={{
                 type: 'linear',
@@ -91,9 +92,9 @@ const LineChart = ({data}) => {
             axisBottom={{
                 orient: 'bottom',
                 tickSize: 5,
-                tickPadding: 5,
-                tickRotation: 0,
-                legend: 'Time',
+                tickPadding: 20,
+                tickRotation: -45,
+                legend: '',
                 legendOffset: 36,
                 legendPosition: 'middle'
             }}
@@ -102,7 +103,7 @@ const LineChart = ({data}) => {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'Price',
+                legend: '',
                 legendOffset: -40,
                 legendPosition: 'middle'
             }}
