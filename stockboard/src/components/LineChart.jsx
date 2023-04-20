@@ -108,6 +108,7 @@ const LineChart = ({data}) => {
             }}
             enableGridX={false}
             enableGridY={false}
+            colors={ colors.greenAccent[600] }
             pointSize={10}
             pointColor={{theme: 'background'}}
             pointBorderWidth={2}
