@@ -4,9 +4,9 @@ import {useTheme} from "@mui/material";
 import {  useEffect, useState} from 'react';
 import { processData, formatTime } from '../dataProcessing';
 
-const LineChart = ({searchValue}) => {
+const LineChart = ({data}) => {
     const [stockData, setStockData] = useState([]);
-    console.log("Line chart data:", searchValue);
+    console.log("Line chart data:", data);
     const formatTime = (timestamp) => {
       const date = new Date(timestamp);
       const hours = date.getHours().toString().padStart(2, '0');
@@ -15,21 +15,25 @@ const LineChart = ({searchValue}) => {
       return `${hours}:${minutes}`;
     };
 
-    useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`http://localhost:5000/stocks?symbol=${searchValue}`);
-        const jsonData = await response.json();
-        console.log('Fetched JSON data:', jsonData);
-        const processedData = processData(jsonData);
-        setStockData(processedData);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
 
-    fetchData();
-  }, [searchValue]);
+    useEffect(() => {
+      const fetchData = async (searchValue) => {
+        console.log('Updated Search value:', searchValue);
+        try {
+          const response = await fetch(`http://localhost:5000/stocks?symbol=${searchValue}`);
+          const jsonData = await response.json();
+          console.log('Fetched JSON data:', jsonData);
+          const processedData = processData(jsonData);
+          console.log("Processed data:", processedData);
+          setStockData(processedData);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      };
+
+  fetchData(data);
+}, [data]);
+
 
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
@@ -37,7 +41,7 @@ const LineChart = ({searchValue}) => {
 
         <ResponsiveLine
 
-            data={searchValue}
+            data={data}
             theme={{
                 axis:{
                     domain:{

@@ -3,11 +3,8 @@ import Header from '../../components/Header';
 import { Box } from '@mui/material';
 import LineChart from '../../components/LineChart';
 import { processData } from '../../dataProcessing';
-const Dashboard = () => {
-  const [searchValue, setSearchValue] = useState("");
-
-
-
+const Dashboard = ({searchValue, setSearchValue}) => {
+  const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
     const fetchData = async (symbol) => {
@@ -16,14 +13,14 @@ const Dashboard = () => {
         const jsonData = await response.json();
         console.log('Fetched JSON data:', jsonData);
         const processedData = processData(jsonData);
-        setSearchValue(processedData);
+        setChartData(processedData);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
-    fetchData('TSLA');
-  }, []);
+    fetchData(searchValue);
+  }, [searchValue]);
 
   return (
     <Box m={'20px'}>
@@ -31,7 +28,7 @@ const Dashboard = () => {
         <Header title={'DASHBOARD'} subtitle={'Welcome to your dashboard'} />
       </Box>
       <Box height={'75vh'}>
-        {searchValue ? <LineChart searchValue={searchValue} /> : <div>Loading...</div>}
+        {chartData ? <LineChart data={chartData} /> : <div>Loading...</div>}
       </Box>
     </Box>
   );

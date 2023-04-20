@@ -22,7 +22,7 @@ function App() {
               <Topbar searchValue={searchValue} setSearchValue={setSearchValue} />
               <Router>
                 <Routes>
-                  <Route path="/" element={<Dashboard searchValue={searchValue} setSearchValue={setSearchValue} />} />
+                  <Route path="/" element={<Dashboard searchValue={searchValue} />} />
                   {/*<Route path="/team" element={<Dashboard />} />*/}
                   {/*<Route path="/contacts" element={<Dashboard />} />*/}
                   {/*<Route path="/invoices" element={<Dashboard />} />*/}

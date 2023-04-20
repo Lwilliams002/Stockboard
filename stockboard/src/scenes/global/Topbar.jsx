@@ -19,11 +19,14 @@ const Topbar = ({ searchValue, setSearchValue}) => {
   const colorMode = useContext(ColorModeContext);
 
   const [searchInput, setSearchInput] = useState("");
-
+  const onSearch = (value) => {
+    setSearchValue(value);
+};
   const handleSearch = () => {
-    console.log("Searching for:", searchInput);
-    // Perform the search here using searchInput
-  };
+  console.log("Searching for:", searchInput);
+  console.log("Current searchValue:", searchValue);
+  setSearchValue(searchInput.toUpperCase());
+};
 
   return (
     <Box display={"flex"} justifyContent={"space-between"} p={2}>
@@ -32,8 +35,8 @@ const Topbar = ({ searchValue, setSearchValue}) => {
         <InputBase
           sx={{ ml: 2, flex: 1 }}
           placeholder={"Search"}
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
         />
         <IconButton type={"button"} sx={{ p: 1 }} onClick={handleSearch}>
           <SearchIcon />
