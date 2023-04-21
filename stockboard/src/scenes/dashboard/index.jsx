@@ -25,7 +25,7 @@ const Dashboard = ({searchValue, setSearchValue}) => {
   return (
     <Box m={'20px'}>
       <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
-        <Header title={'DASHBOARD'} subtitle={'Welcome to your dashboard'} />
+        <Header title={searchValue} subtitle={'5-Day Stock Price History'} />
       </Box>
       <Box height={'75vh'}>
         {chartData ? <LineChart data={chartData} /> : <div>Loading...</div>}

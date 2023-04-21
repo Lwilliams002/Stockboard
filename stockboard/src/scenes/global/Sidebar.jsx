@@ -69,8 +69,8 @@ const Sidebar = () =>{
                 alignItems="center"
                 ml="15px"
               >
-                <Typography variant="h3" color={colors.grey[100]}>
-                  ADMIN
+                <Typography variant="h3" color={theme.palette.text.primary}>
+                  Stockboard
                 </Typography>
                 <IconButton onClick={() => setIsCollapsed(!isCollapsed)}>
                   <MenuOutlinedIcon />
@@ -92,7 +92,7 @@ const Sidebar = () =>{
                     </Box>
 
                     <Box textAlign={"center"}>
-                        <Typography variant={"h2"} color={colors.grey[100]} fontWeight={"bold"} sx={{ m: "10px 0 0 0"}}>Lesly Williams</Typography>
+                        <Typography variant={"h2"} color={theme.palette.text.primary} fontWeight={"bold"} sx={{ m: "10px 0 0 0"}}>Lesly Williams</Typography>
                         <Typography variant={"h5"} color={colors.green[500]}>VP Fancy Admin</Typography>
                     </Box>
                 </Box>
