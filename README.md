@@ -11,6 +11,9 @@ Stock Visualizer is a powerful data visualization dashboard for tracking stock m
 - Analyze historical stock prices with intraday data granularity
 - Responsive and user-friendly design with a search bar for stock symbols
 
+## UI
+![image](https://user-images.githubusercontent.com/82903572/233634184-e5f85887-5861-4c23-b2d3-0325c25c7b95.png)
+
 ## Installation
 
 1. Clone the repository:
