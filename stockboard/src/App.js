@@ -11,18 +11,19 @@ import {useState} from "react";
 function App() {
   const [searchValue, setSearchValue] = useState('TSLA')
   const [theme, colorMode] = useMode();
+  const [lineColor, setLineColor] = useState("#20c997");
   return (
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <div>
+        <div width={150}>
           <Sidebar />
           <Container>
             <main className={"content"}>
-              <Topbar searchValue={searchValue} setSearchValue={setSearchValue} />
+              <Topbar searchValue={searchValue} setSearchValue={setSearchValue} lineColor={lineColor} setLineColor={setLineColor} />
               <Router>
                 <Routes>
-                  <Route path="/" element={<Dashboard searchValue={searchValue} />} />
+                  <Route path="/" element={<Dashboard searchValue={searchValue} lineColor={lineColor} setLineColor={setLineColor} />} />
                   {/*<Route path="/team" element={<Dashboard />} />*/}
                   {/*<Route path="/contacts" element={<Dashboard />} />*/}
                   {/*<Route path="/invoices" element={<Dashboard />} />*/}

@@ -3,7 +3,10 @@ import {
   IconButton,
   useTheme,
   InputBase,
+  Tooltip, Link,
 } from "@mui/material";
+import { SketchPicker } from "react-color";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 import { useContext, useState } from "react";
 import { ColorModeContext, tokens } from "../../theme";
 import LightModeOutlinedIcon from "@mui/icons-material/LightMode";
@@ -13,11 +16,17 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 
-const Topbar = ({ searchValue, setSearchValue}) => {
+const Topbar = ({ searchValue, setSearchValue, lineColor, setLineColor}) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+  const [colorPickerVisible, setColorPickerVisible] = useState(false);
 
+  const handleClickAway = () => {
+    setColorPickerVisible(false);
+  };
+
+  // Search Value is taken
   const [searchInput, setSearchInput] = useState("");
   const onSearch = (value) => {
     setSearchValue(value);
@@ -52,15 +61,37 @@ const Topbar = ({ searchValue, setSearchValue}) => {
             <LightModeOutlinedIcon />
           )}
         </IconButton>
-        <IconButton>
-          <NotificationsOutlinedIcon />
-        </IconButton>
-        <IconButton>
-          <SettingsOutlinedIcon />
-        </IconButton>
-        <IconButton>
-          <PersonOutlinedIcon />
-        </IconButton>
+        <Tooltip title="You have no new notifications">
+          <IconButton>
+            <NotificationsOutlinedIcon />
+          </IconButton>
+        </Tooltip>
+        <ClickAwayListener onClickAway={handleClickAway}>
+          <Box>
+            <IconButton onClick={() => setColorPickerVisible(!colorPickerVisible)}>
+              <SettingsOutlinedIcon />
+            </IconButton>
+            {colorPickerVisible && (
+              <Box zIndex={10} position="absolute">
+                <SketchPicker
+                  color={lineColor}
+                  onChangeComplete={(color) => {
+                    setLineColor(color.hex);
+                  }}
+                />
+              </Box>
+            )}
+          </Box>
+        </ClickAwayListener>
+        <Tooltip title="GitHub Page">
+          <Link href="https://github.com/lwilliams002" target="_blank" rel="noopener noreferrer">
+          <IconButton>
+            <PersonOutlinedIcon />
+          </IconButton>
+        </Link>
+        </Tooltip>
+
+
       </Box>
     </Box>
   );

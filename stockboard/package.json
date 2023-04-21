@@ -28,7 +28,10 @@
     "styled-components": "^5.3.9",
     "web-vitals": "^2.1.4",
     "formik": "^2.2.9",
-    "yup": "^1.0.2"
+    "yup": "^1.0.2",
+    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
+    "react-color": "^2.19.3"
   },
   "scripts": {
     "start": "react-scripts start",

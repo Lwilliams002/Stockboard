@@ -3,7 +3,7 @@ import Header from '../../components/Header';
 import { Box } from '@mui/material';
 import LineChart from '../../components/LineChart';
 import { processData } from '../../dataProcessing';
-const Dashboard = ({searchValue, setSearchValue}) => {
+const Dashboard = ({searchValue, setSearchValue, lineColor}) => {
   const [chartData, setChartData] = useState(null);
 
   useEffect(() => {
@@ -27,8 +27,8 @@ const Dashboard = ({searchValue, setSearchValue}) => {
       <Box display={'flex'} justifyContent={'space-between'} alignItems={'center'}>
         <Header title={searchValue} subtitle={'5-Day Stock Price History'} />
       </Box>
-      <Box height={'75vh'}>
-        {chartData ? <LineChart data={chartData} /> : <div>Loading...</div>}
+      <Box height={'75vh'} >
+        {chartData ? <LineChart data={chartData} lineColor={lineColor} /> : <div>Loading...</div>}
       </Box>
     </Box>
   );

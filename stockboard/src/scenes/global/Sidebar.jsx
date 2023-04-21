@@ -59,7 +59,7 @@ const Sidebar = () =>{
             style={{
 
               margin: "10px 0 20px 0",
-              color: colors.grey[100],
+              color: colors.grey[600],
             }}
           >
             {!isCollapsed && (
@@ -95,6 +95,7 @@ const Sidebar = () =>{
                         <Typography variant={"h2"} color={theme.palette.text.primary} fontWeight={"bold"} sx={{ m: "10px 0 0 0"}}>Lesly Williams</Typography>
                         <Typography variant={"h5"} color={colors.green[500]}>VP Fancy Admin</Typography>
                     </Box>
+
                 </Box>
             )}
 

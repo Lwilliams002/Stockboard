@@ -4,7 +4,7 @@ import {useTheme} from "@mui/material";
 import {  useEffect, useState} from 'react';
 import { processData, formatTime } from '../dataProcessing';
 
-const LineChart = ({data}) => {
+const LineChart = ({data, lineColor}) => {
     const [stockData, setStockData] = useState([]);
     console.log("Line chart data:", data);
     const formatTime = (timestamp) => {
@@ -109,7 +109,7 @@ const LineChart = ({data}) => {
             }}
             enableGridX={false}
             enableGridY={false}
-            colors={ colors.greenAccent[600] }
+            colors={ lineColor }
             pointSize={10}
             pointColor={{theme: 'background'}}
             pointBorderWidth={2}
