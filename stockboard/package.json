@@ -1,7 +1,7 @@
 {
   "name": "stockboard",
   "version": "0.1.0",
-  "homepage": "https://Lwilliams002.github.io/Stockboard",
+  "homepage": "https://Lwilliams002.github.io/Stockboard/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
