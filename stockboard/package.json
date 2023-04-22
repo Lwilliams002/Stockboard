@@ -45,6 +45,7 @@
       "react-app/jest"
     ]
   },
+  "homepage": "https://lwilliams002.github.io/Stockboard/",
   "browserslist": {
     "production": [
       ">0.2%",
