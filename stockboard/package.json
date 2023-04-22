@@ -1,4 +1,5 @@
 {
+  "homepage": "https://lwilliams002.github.io/Stockboard/",
   "name": "stockboard",
   "version": "0.1.0",
   "private": true,
@@ -34,7 +35,10 @@
     "react-color": "^2.19.3"
   },
   "scripts": {
+
     "start": "react-scripts start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -45,7 +49,7 @@
       "react-app/jest"
     ]
   },
-  "homepage": "https://lwilliams002.github.io/Stockboard/",
+
   "browserslist": {
     "production": [
       ">0.2%",
