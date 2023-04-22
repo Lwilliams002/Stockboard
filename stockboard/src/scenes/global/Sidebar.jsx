@@ -20,6 +20,29 @@ import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 
 const Sidebar = () =>{
+    const resources = [
+  {
+    name: "React",
+    link: "https://reactjs.org/",
+  },
+  {
+    name: "Material-UI",
+    link: "https://mui.com/",
+  },
+  {
+    name: "Nivo",
+    link: "https://nivo.rocks/",
+  },
+  {
+    name: "YFinance",
+    link: "https://pypi.org/project/yfinance/",
+  },
+  {
+    name: "Flask",
+    link: "https://flask.palletsprojects.com/",
+  },
+  // Add more resources as needed
+];
     const theme = useTheme();
     const color = tokens(theme.palette.mode)
     const [isCollapsed, setIsCollapsed ] = useState(false);
@@ -93,12 +116,45 @@ const Sidebar = () =>{
 
                     <Box textAlign={"center"}>
                         <Typography variant={"h2"} color={theme.palette.text.primary} fontWeight={"bold"} sx={{ m: "10px 0 0 0"}}>Lesly Williams</Typography>
-                        <Typography variant={"h5"} color={colors.green[500]}>VP Fancy Admin</Typography>
+                        <Typography variant={"h5"} color={colors.green[500]}>Software Developer</Typography>
                     </Box>
 
                 </Box>
-            )}
 
+            )}
+            <MenuItem>
+               {!isCollapsed && (
+                  <Box mb={"25px"}>
+                    <Box textAlign={"left"}>
+                      <Typography variant={"h2"} color={theme.palette.text.primary} mt={2}>
+                        Resources
+                      </Typography>
+                    </Box>
+                    <Box >
+                      {resources.map((resource) => (
+                        <MenuItem key={resource.name}>
+                            <Box component="span">
+                                <a
+                                    href={resource.link}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    style={{
+                                        textDecoration: "none",
+                                        color: theme.palette.text.primary,
+                                        display: "block", // Add display property
+                                        paddingTop: "10px", // Add padding to individual link
+                                        paddingBottom: "10px", // Add padding to individual link
+                                    }}
+                                  >
+                                    {resource.name}
+                                </a>
+                            </Box>
+                        </MenuItem>
+                      ))}
+                    </Box>
+                  </Box>
+                )}
+            </MenuItem>
         </Menu>
       </ProSidebar>
     </Box>
