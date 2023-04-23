@@ -98,7 +98,7 @@ const Sidebar = () =>{
                           alt={"profile-user"}
                           width={"100px"}
                           height={"100px"}
-                          src={`${process.env.PUBLIC_URL}/user.jpg`}
+                          src={"https://github.com/Lwilliams002/Stockboard/blob/master/public/assets/user.jpg?raw=true"}
                           style={{ cursor: "pointer", borderRadius: "50%" }}
                         />
                     </Box>
