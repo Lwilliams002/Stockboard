@@ -21,7 +21,7 @@ const LineChart = ({data, lineColor}) => {
       const fetchData = async (searchValue) => {
         console.log('Updated Search value:', searchValue);
         try {
-          const response = await fetch(`http://Server-env.eba-v2awp3cu.us-east-1.elasticbeanstalk.com/stocks?symbol=${searchValue}`);
+          const response = await fetch(`http://cmario72.pythonanywhere.com/stocks?symbol=${searchValue}`);
           const jsonData = await response.json();
           console.log('Fetched JSON data:', jsonData);
           const processedData = processData(jsonData);
