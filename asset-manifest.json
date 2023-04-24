@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Stockboard/static/css/main.9325570a.css",
-    "main.js": "/Stockboard/static/js/main.6a0661ef.js",
+    "main.js": "/Stockboard/static/js/main.0f3bac46.js",
     "index.html": "/Stockboard/index.html",
     "main.9325570a.css.map": "/Stockboard/static/css/main.9325570a.css.map",
-    "main.6a0661ef.js.map": "/Stockboard/static/js/main.6a0661ef.js.map"
+    "main.0f3bac46.js.map": "/Stockboard/static/js/main.0f3bac46.js.map"
   },
   "entrypoints": [
     "static/css/main.9325570a.css",
-    "static/js/main.6a0661ef.js"
+    "static/js/main.0f3bac46.js"
   ]
 }
