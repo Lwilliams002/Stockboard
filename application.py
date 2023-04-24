@@ -24,8 +24,13 @@ def get_stocks():
     end_date = request.args.get('end_date', date.today().strftime("%Y-%m-%d"))
 
     # Fetch stock price data
-    url = f"http://Server-env.eba-v2awp3cu.us-east-1.elasticbeanstalk.com/stocks?symbol={symbol}&start_date={start_date}&end_date={end_date}"
-    data = pd.read_json(url)
+    data = yf.download(symbol, start=start_date, end=end_date, interval='30m', auto_adjust=True)
+
+    # Calculate daily returns
+    data[f'{symbol} Daily Return'] = data['Close'].pct_change()
+
+    # Drop any rows with missing data
+    data = data.dropna()
 
     # Convert DataFrame to dictionary
     response_data = data.to_dict(orient='index')
