@@ -86,7 +86,7 @@ const LineChart = ({data, lineColor}) => {
                 reverse: false
             }}
             yFormat=" >-.2f"
-            curve="catmullRom"
+            curve="linear"
             axisTop={null}
             axisRight={null}
             axisBottom={{
