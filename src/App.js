@@ -5,9 +5,11 @@ import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
 import { ColorModeContext, useMode } from "./theme";
 import { CssBaseline, ThemeProvider, Container } from "@mui/material";
+import TopDash from "./scenes/dashboard/topDash";
 
 function App() {
   const [searchValue, setSearchValue] = useState("TSLA");
+
   const [theme, colorMode] = useMode();
   const [lineColor, setLineColor] = useState("#20c997");
 
@@ -30,6 +32,7 @@ function App() {
                   <Route
                     path="/"
                     element={
+
                       <Dashboard
                         searchValue={searchValue}
                         lineColor={lineColor}

@@ -31,28 +31,31 @@ const Topbar = ({ searchValue, setSearchValue, lineColor, setLineColor}) => {
   const onSearch = (value) => {
     setSearchValue(value);
 };
-  const handleSearch = () => {
-  console.log("Searching for:", searchInput);
-  console.log("Current searchValue:", searchValue);
-  setSearchValue(searchInput.toUpperCase());
-};
+   const handleSearch = (event) => {
+    event.preventDefault();
+    console.log("Searching for:", searchInput);
+    console.log("Current searchValue:", searchValue);
+    setSearchValue(searchInput.toUpperCase());
+  };
 
   return (
     <Box display={"flex"} justifyContent={"space-between"} p={2}>
       {/* SEARCH BAR */}
-      <Box display={"flex"} backgroundColor={colors.primary[400]} borderRadius="3px">
-        <Tooltip title="Use only stock SYMBOL">
-          <InputBase
-          sx={{ ml: 2, flex: 1 }}
-          placeholder={"Search"}
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-        />
-        </Tooltip>
-        <IconButton type={"button"} sx={{ p: 1 }} onClick={handleSearch}>
-          <SearchIcon />
-        </IconButton>
-      </Box>
+      <form onSubmit={handleSearch}>
+        <Box display={"flex"} backgroundColor={colors.primary[400]} borderRadius="3px">
+          <Tooltip title="Use only stock SYMBOL">
+            <InputBase
+              sx={{ ml: 2, flex: 1 }}
+              placeholder={"Search"}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+          </Tooltip>
+          <IconButton type="submit" sx={{ p: 1 }}>
+            <SearchIcon />
+          </IconButton>
+        </Box>
+      </form>
 
       {/* ICONS */}
       <Box display={"flex"}>

@@ -76,7 +76,7 @@ const LineChart = ({data, lineColor}) => {
                     }
                 }
             }}
-            margin={{top: 50, right: 110, bottom: 95, left: 70}}
+            margin={{top: 10, right: 80, bottom: 120, left: 70}}
             xScale={{type: 'point'}}
             yScale={{
                 type: 'linear',
@@ -91,7 +91,7 @@ const LineChart = ({data, lineColor}) => {
             axisRight={null}
             axisBottom={{
                 orient: 'bottom',
-                tickSize: 5,
+                tickSize: 2,
                 tickPadding: 20,
                 tickRotation: -45,
                 legend: '',
