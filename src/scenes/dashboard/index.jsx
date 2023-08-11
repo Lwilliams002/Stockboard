@@ -14,7 +14,7 @@ const Dashboard = ({searchValue, setSearchValue, lineColor}) => {
   useEffect(() => {
     const fetchData = async (symbol) => {
       try {
-        const response = await fetch(`https://cmario72.pythonanywhere.com/stocks?symbol=${searchValue}`);
+        const response = await fetch(`https://cmario721.pythonanywhere.com/stocks?symbol=${searchValue}`);
         const jsonData = await response.json();
         console.log('Fetched JSON data:', jsonData);
         const processedData = processData(jsonData);
